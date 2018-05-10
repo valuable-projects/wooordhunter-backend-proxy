@@ -3,6 +3,8 @@ const port = 8000;
 
 const prefix = 'http://wooordhunt.ru/';
 
+console.log('wooorhunter backend proxy is running');
+
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', '*');
