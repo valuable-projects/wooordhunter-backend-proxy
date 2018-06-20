@@ -1,7 +1,10 @@
-module.exports = (req, res, next) => {
+// @flow
+
+import type { $Request, $Response, NextFunction } from 'express';
+
+const cors = (req: $Request, res: $Response, next: NextFunction): mixed => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Wooorhunt-Destination-Header');
 
   if (req.method === 'OPTIONS') {
     return res.end();
@@ -9,3 +12,5 @@ module.exports = (req, res, next) => {
 
   return next();
 };
+
+module.exports = { cors };
