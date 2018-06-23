@@ -1,7 +1,8 @@
 // @flow
+/* eslint-disable class-methods-use-this */
 
 import type { Translation } from '../parser/index.type';
-import type { Fetchable, Configurable, WooordhuntAPIOptions, Tip } from './index.type';
+import type { Fetchable, Configurable, WooordhuntAPIOptions, Tip, RawTip } from './index.type';
 
 const got: Function = require('got');
 
@@ -27,7 +28,7 @@ class WooordhuntAPI implements Fetchable, Configurable {
   async fetchWordTranslation(word: string): Promise<Translation> {
     const { apiUri } = this.options;
 
-    const api = `${apiUri}//word/${word}`;
+    const api = `${apiUri}/word/${word}`;
 
     const { body }: { body: string } = await got(api);
 
@@ -36,19 +37,20 @@ class WooordhuntAPI implements Fetchable, Configurable {
     return translation;
   }
 
+  handleRawTips(response: { body: { tips: ?Array<RawTip<string>> } }): Array<Tip<string>> {
+    const tips: Array<RawTip<string>> = response.body.tips || [];
+
+    return tips.map(tip => ({ word: tip.w, translation: tip.t }));
+  }
+
   async fetchTips(word: string) {
     const { apiUri } = this.options;
 
     const api = `${apiUri}/get_tips.php?abc=${word}`;
     const requestOptions = { json: true };
+    const tips: Array<Tip<string>> = await got(api, requestOptions).then(this.handleRawTips);
 
-    const {
-      body: { tips },
-    }: {
-      body: { tips: ?Array<Tip<string>> }
-    } = await got(api, requestOptions);
-
-    return tips || [];
+    return tips;
   }
 }
 

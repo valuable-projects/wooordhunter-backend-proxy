@@ -2,6 +2,11 @@
 
 import type { Translation } from '../parser/index.type';
 
+export type RawTip<T> = {
+  w: T,
+  t: T,
+};
+
 export type Tip<T> = {
   word: T,
   translation: T,
