@@ -7,7 +7,7 @@ const fs = require('fs');
 const got = require('got');
 
 const createServer = require('../server');
-const config = require('../config');
+const config = require('../../config');
 const tips = require('./fixtures/tips');
 
 const english = fs.readFileSync(path.join(__dirname, '../parser/fixtures/english.html'));

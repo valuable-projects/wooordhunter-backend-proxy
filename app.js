@@ -1,5 +1,5 @@
 // @flow
 
-const app = require('./server')();
+const app = require('./src/server')();
 
 app.listen('3333');

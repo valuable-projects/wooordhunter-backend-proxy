@@ -4,7 +4,7 @@ import type { $Request, $Response } from 'express';
 
 const router = require('express').Router();
 
-const config = require('../config');
+const config = require('../../config');
 const WooordhuntAPI = require('../wooordhunt/index');
 
 const api: WooordhuntAPI = new WooordhuntAPI({ apiUri: config.PREFIX });
