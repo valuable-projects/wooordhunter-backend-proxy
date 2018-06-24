@@ -8,4 +8,4 @@ cache:
 services:
   - mongodb
 env:
-  - NODE_ENV=TEST
+  - NODE_ENV=test
