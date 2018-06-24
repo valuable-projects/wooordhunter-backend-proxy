@@ -1,5 +1,7 @@
 // @flow
 
+import type { RegistrationEntity, Query, QueryOptions, UpdateOptions } from './index.type';
+
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -25,25 +27,6 @@ const RegistrationsSchema = new Schema({
   },
 });
 
-type RegistrationEntity = {
-  uuid: string;
-  createdAt: Date;
-  updatedAt: Date;
-  usageNumber: number;
-}
-
-type Query = {
-  ...Promise<Array<RegistrationOptions>>,
-  limit: (number: number) => Query,
-  skip: (number: number) => Query,
-  then: (RegistrationOptions[]) => RegistrationOptions[],
-}
-
-type QueryOptions = {|
-  limit: ?number,
-  offset: ?number,
-|};
-
 class Registrations {
   uuid: string;
   createdAt: Date;
@@ -52,8 +35,7 @@ class Registrations {
 
   static findOne: (query: { [string]: mixed }) => Promise<RegistrationEntity>;
   static find: () => Query;
-  static update: (criteria: Object, data: Object, { upsert?: boolean, setDefaultsOnInsert?: boolean })
-    => Promise<RegistrationEntity>;
+  static update: (Object, Object, UpdateOptions) => Promise<RegistrationEntity>;
 
   static async findById(uuid: string): Promise<RegistrationEntity> {
     return this.findOne({ uuid });
@@ -72,7 +54,7 @@ class Registrations {
       query.limit(limit);
     }
 
-    const results: Promise<Array<RegistrationEntity>> = ((await query): any);
+    const results: Array<RegistrationEntity> = await query;
 
     return results;
   }

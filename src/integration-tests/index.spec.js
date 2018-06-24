@@ -1,10 +1,10 @@
 // @flow
 
+const fs = require('fs');
 const getPort = require('get-port');
+const got = require('got');
 const nock = require('nock');
 const path = require('path');
-const fs = require('fs');
-const got = require('got');
 
 const createServer = require('../server');
 const config = require('../../config');

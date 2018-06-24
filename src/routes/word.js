@@ -21,7 +21,8 @@ router.get('/:word', async (req: GetTranslationRequest, res: $Response): Promise
 
     res.json(data);
   } catch (error) {
-    const err: mixed = error;
+    // Type annotation for catch parameters not supported yet (official notes)
+    const err: Error = error;
     console.error(err);
 
     res.sendStatus(500);

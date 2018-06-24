@@ -17,7 +17,10 @@ router.get('/', async (req: $Request, res: $Response) => {
 
     res.status(200).json(registrations);
   } catch (error) {
-    console.error(error);
+    // Type annotation for catch parameters not supported yet (official notes)
+    const err: Error = error;
+    console.error(err);
+
     res.sendStatus(500);
   }
 });
@@ -30,7 +33,10 @@ router.post('/', async (req: { body: Identifier }, res: $Response) => {
 
     res.sendStatus(201);
   } catch (error) {
-    console.error(error);
+    // Type annotation for catch parameters not supported yet (official notes)
+    const err: Error = error;
+    console.error(err);
+
     res.sendStatus(500);
   }
 });

@@ -21,8 +21,8 @@ router.get('/:word', async (req: GetTipsRequest, res: $Response): Promise<void> 
 
     res.json(tips);
   } catch (error) {
-    const err: mixed = error;
-
+    // Type annotation for catch parameters not supported yet (official notes)
+    const err: Error = error;
     console.error(err);
 
     res.sendStatus(500);

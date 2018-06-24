@@ -1,12 +1,13 @@
 // @flow
 
 import type { EnglishTranslation } from './english.type';
+import type { CherioEntryPoint, CherioObject } from '../index.type';
 
-const cherio = require('cherio');
+const cherio: CherioEntryPoint = require('cherio');
 
 const languages = require('../languages');
 
-const preprocessDomModel = (content: any): void => {
+const preprocessDomModel = (content: CherioObject): void => {
   content.find('#word_action_block').remove();
   content.find('#word_action_block_help').remove();
   content.find('img').remove();
@@ -18,8 +19,8 @@ const preprocessDomModel = (content: any): void => {
     .remove();
 };
 
-const getAllMeanings = (content: any, marker: mixed): Array<string> => {
-  const node = content.find(marker).next();
+const getAllMeanings = (content: CherioObject, marker: CherioObject): Array<string> => {
+  const node = (content.find(marker): CherioObject).next();
 
   node.find('#pos_noun').removeClass('hidden');
   node.find('.hidden').remove();
@@ -32,7 +33,7 @@ const getAllMeanings = (content: any, marker: mixed): Array<string> => {
     .filter((v: string): boolean => !!v);
 };
 
-const getPhrases = (content: any): Array<string> => {
+const getPhrases = (content: CherioObject): Array<string> => {
   content.find('.snoska').remove();
 
   return content
@@ -43,14 +44,14 @@ const getPhrases = (content: any): Array<string> => {
     .filter((v: string): boolean => !!v);
 };
 
-const getUKTranscription = (content: any): string =>
+const getUKTranscription = (content: CherioObject): string =>
   content
     .find('#uk_tr_sound')
     .find('span')
     .text()
     .trim();
 
-const getUSTranscription = (content: any): string =>
+const getUSTranscription = (content: CherioObject): string =>
   content
     .find('#us_tr_sound')
     .find('span')
@@ -58,13 +59,13 @@ const getUSTranscription = (content: any): string =>
     .trim();
 
 const getWordInfoFromHtml = (html: string): EnglishTranslation => {
-  const content = cherio.load(html)('#wd');
+  const content: CherioObject = cherio.load(html)('#wd');
 
   preprocessDomModel(content);
 
   const foundItems = content.find('.pos_item');
-  const noun = foundItems[0];
-  const verb = foundItems[1];
+  const noun: CherioObject = foundItems[0];
+  const verb: CherioObject = foundItems[1];
 
   const data: EnglishTranslation = {
     transcription: {

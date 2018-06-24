@@ -1,12 +1,13 @@
 // @flow
 
 import type { RussianTranslation } from './russian.type';
+import type { CherioEntryPoint, CherioObject } from '../index.type';
 
-const cherio: any = require('cherio');
+const cherio: CherioEntryPoint = require('cherio');
 
 const languages = require('../languages');
 
-const getPhrasesFromDiv = (div: any): Array<string> =>
+const getPhrasesFromDiv = (div: CherioObject): Array<string> =>
   div
     .html()
     .replace(/<br>/g, '\n')
@@ -16,7 +17,7 @@ const getPhrasesFromDiv = (div: any): Array<string> =>
     .filter((line: string): boolean => !!line)
     .map((line: string): string => line.replace(/<span>/g, '').replace(/<\/span>/g, ''));
 
-const getPhrases = (content: any): Array<string> => {
+const getPhrases = (content: CherioObject): Array<string> => {
   content.find('.more_up').remove();
   content.find('.more_ru').remove();
   content.find('.more_down').remove();
@@ -32,8 +33,8 @@ const getPhrases = (content: any): Array<string> => {
   return [...visiblePhrases, ...hiddenPhrases];
 };
 
-const getCommonMeanging = (content: any): Array<string> => {
-  const divWithWord = content.find('#wd_content');
+const getCommonMeanging = (content: CherioObject): Array<string> => {
+  const divWithWord: CherioObject = content.find('#wd_content');
   divWithWord.find('.word_ex').remove();
 
   const rawValues: Array<string> = [];
@@ -64,7 +65,7 @@ const getCommonMeanging = (content: any): Array<string> => {
 };
 
 const getWordInfoFromHtml = (html: string): RussianTranslation => {
-  const content: any = cherio.load(html, { decodeEntities: false })('#wd');
+  const content: CherioObject = cherio.load(html, { decodeEntities: false })('#wd');
 
   const data: RussianTranslation = {
     transcription: {
