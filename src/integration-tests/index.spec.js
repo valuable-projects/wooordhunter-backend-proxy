@@ -115,4 +115,38 @@ describe('Integration tests', () => {
       ]));
     });
   });
+
+  describe('When working with user registration', () => {
+    let createResponse: any = null;
+    let getResponse: any = null;
+
+    beforeAll(async () => {
+      const api = `${scope.url}/registration`;
+      const options = {
+        method: 'POST',
+        body: JSON.stringify({ uuid: 'test' }),
+        headers: {
+          'content-type': 'application/json',
+        },
+      };
+
+      createResponse = await got(api, options);
+      getResponse = await got(api, { json: true });
+    });
+
+    it('should respond with status 201 for new registration', () => {
+      expect(createResponse.statusCode).toBe(201);
+    });
+
+    it('should respond with status 200', () => {
+      expect(getResponse.statusCode).toBe(200);
+    });
+
+    it('should respond with created registration', () => {
+      const { body: payload } = getResponse;
+
+      expect(payload).toHaveLength(1);
+      expect(payload[0].uuid).toBe('test');
+    });
+  });
 });
