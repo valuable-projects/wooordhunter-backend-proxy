@@ -17,8 +17,8 @@ router.get('/', async (req: $Request, res: $Response) => {
 
     res.status(200).json(registrations);
   } catch (error) {
-    console.log('error', error);
-    res.status(500).send(error);
+    console.error(error);
+    res.sendStatus(500);
   }
 });
 
@@ -30,8 +30,8 @@ router.post('/', async (req: { body: Identifier }, res: $Response) => {
 
     res.sendStatus(201);
   } catch (error) {
-    console.log('error', error);
-    res.status(500).send(error);
+    console.error(error);
+    res.sendStatus(500);
   }
 });
 
