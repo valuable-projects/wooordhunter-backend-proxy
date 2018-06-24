@@ -34,7 +34,7 @@
     "deploy": "node deploy",
     "start": "babel-node app.js",
     "start-dev": "nodemon --exec yarn babel-node -- ./app.js",
-    "test": "jest --coverage --runInBand"
+    "test": "jest --coverage --runInBand --forceExit"
   },
   "jest": {
     "verbose": true,
