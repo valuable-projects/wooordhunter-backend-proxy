@@ -10,4 +10,4 @@ services:
   - mongodb
  
 env:
-  - env=TEST
+  - NODE_ENV=TEST
