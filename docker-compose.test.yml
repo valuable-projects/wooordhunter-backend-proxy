@@ -1,7 +1,9 @@
 version: '3.6'
 services:
   api:
-    build: .
+    build:
+      context: packages/wooordhunter-proxy
+      dockerfile: Dockerfile
     command: ["yarn", "test"]
     volumes:
       - .:/home/app

@@ -10,8 +10,8 @@ const createServer = require('../server');
 const config = require('../../config');
 const tips = require('./fixtures/tips');
 
-const english = fs.readFileSync(path.join(__dirname, '../parser/fixtures/english.html'));
-const russian = fs.readFileSync(path.join(__dirname, '../parser/fixtures/russian.html'));
+const english = fs.readFileSync(path.join(__dirname, 'fixtures/english.html'));
+const russian = fs.readFileSync(path.join(__dirname, 'fixtures/russian.html'));
 
 describe('Integration tests', () => {
   const scope = {};

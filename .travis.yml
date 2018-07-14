@@ -5,6 +5,10 @@ node_js:
 cache:
   directories:
     - "node_modules"
+jobs:
+  include:
+    - stage: lint
+      script: yarn lint
 services:
   - mongodb
 env:

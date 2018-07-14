@@ -1,6 +1,6 @@
 // @flow
 
-import type { Translation } from '../parser/index.type';
+import type { Translation } from './parser/index.type';
 
 export type RawTip<T> = {
   w: T,
