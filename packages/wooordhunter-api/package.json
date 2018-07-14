@@ -21,5 +21,8 @@
     "transform": {
       "\\.js$": "./_dev/jest-transform"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
