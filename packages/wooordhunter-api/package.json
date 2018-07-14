@@ -1,0 +1,11 @@
+{
+  "name": "@vviital/wooordhunter-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "vviital <vviital@tut.by>",
+  "license": "MIT",
+  "dependencies": {
+    "cherio": "^1.0.0-rc.2",
+    "got": "^8.3.1"
+  }
+}

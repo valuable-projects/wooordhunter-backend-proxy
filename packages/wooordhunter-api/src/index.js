@@ -1,12 +1,12 @@
 // @flow
 /* eslint-disable class-methods-use-this */
 
-import type { Translation } from '../parser/index.type';
+import type { Translation } from './parser/index.type';
 import type { Fetchable, Configurable, WooordhuntAPIOptions, Tip, RawTip } from './index.type';
 
 const got: (string, options?: { json?: boolean }) => Promise<Object> = require('got');
 
-const parse = require('../parser');
+const parse = require('./parser');
 
 class WooordhuntAPI implements Fetchable, Configurable {
   static instance: WooordhuntAPI;
