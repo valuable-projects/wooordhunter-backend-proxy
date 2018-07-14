@@ -4,7 +4,7 @@
   "main": "index.js",
   "name": "@vviital/wooordhunter-backend-proxy",
   "dependencies": {
-    "@vviital/wooordhunter-api": "^1.0.0",
+    "@vviital/wooordhunter-api": "^1.0.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "got": "^8.3.1",
@@ -30,7 +30,7 @@
     "start-dev": "nodemon --exec yarn babel-node -- ./app.js",
     "test": "jest --coverage --runInBand --forceExit"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "jest": {
     "verbose": true,
     "transform": {
