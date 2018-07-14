@@ -61,8 +61,6 @@ Data in response depends on languge of requested word. Generally response have s
 }
 ```
 
-### Get tips
-
 ### fetchTips
 
 ```
@@ -84,24 +82,24 @@ Data in response depends on languge of requested word. Generally response have s
 Generally response have such format:
 
 ```
-  [
-    {
-        word: string,
-        translation: string
-    },
-    ...
-    {
-        word: string,
-        translation: string
-    }
-  ]
+[
+  {
+      word: string,
+      translation: string
+  },
+  ...
+  {
+      word: string,
+      translation: string
+  }
+]
 ```
 
 ### reconfigure
 
 _Generally you don't need this method_
 
-Acctually WooordhunterAPI is a singelton and because of this we sometimes need to have possibility to reconfigure it. To do it - just invoke `reconfigure` method.
+Actually WooordhunterAPI is a singelton and because of this we sometimes need to have possibility to reconfigure it. To do it - just invoke `reconfigure` method.
 
 ```
   const WooordhuntAPI = require('@vviital/wooordhunter-api');
