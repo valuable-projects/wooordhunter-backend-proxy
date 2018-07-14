@@ -1,11 +1,25 @@
 {
   "name": "@vviital/wooordhunter-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/index.js",
   "author": "vviital <vviital@tut.by>",
   "license": "MIT",
   "dependencies": {
     "cherio": "^1.0.0-rc.2",
     "got": "^8.3.1"
+  },
+  "scripts": {
+    "build": "rm -rf lib/* && flow-remove-types --pretty src -d lib/src && flow-remove-types --pretty index.js -d lib",
+    "prepublish": "yarn run build",
+    "test": "jest --coverage --runInBand --forceExit"
+  },
+  "devDependencies": {
+    "flow-remove-types": "^1.2.3",
+    "jest": "^23.4.1"
+  },
+  "jest": {
+    "transform": {
+      "\\.js$": "./_dev/jest-transform"
+    }
   }
 }
